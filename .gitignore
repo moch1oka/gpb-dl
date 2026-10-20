@@ -1,0 +1,13 @@
+node_modules
+*.pdf
+*_Toc.txt
+temp/
+downloads/
+cookies.txt
+refrence_repo/
+.DS_Store
+hires_work/
+tmp/
+*.epub
+*.cbz
+curl.txt
