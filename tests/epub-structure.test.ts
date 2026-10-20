@@ -1,4 +1,5 @@
 import { describe, it, expect } from "bun:test";
+import { TEST_COOKIES } from "./fixtures";
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
@@ -263,7 +264,7 @@ describe("RTL page order", () => {
       return this.adjustRtlPages(pages, all).map((p) => p.pid);
     }
   }
-  const dl = new TestPages("rtl_test", { cookiesPath: "cookies.txt", outputDir: "tmp", tempDir: "tmp", pace: 0 });
+  const dl = new TestPages("rtl_test", { cookiesPath: TEST_COOKIES, outputDir: "tmp", tempDir: "tmp", pace: 0 });
   const all = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7"].map((pid, order) => ({ pid, order }));
 
   it("swaps spreads but keeps the covers", () => {

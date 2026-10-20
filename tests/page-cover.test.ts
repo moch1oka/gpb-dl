@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from "bun:test";
+import { TEST_COOKIES } from "./fixtures";
 import { PageDownloader } from "../src/downloader/page";
 import fs from "fs";
 import path from "path";
@@ -41,7 +42,7 @@ describe("PageDownloader applyCoverSelection", () => {
 
   it("skips cover selection when --cover none is specified", async () => {
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -58,7 +59,7 @@ describe("PageDownloader applyCoverSelection", () => {
     fs.writeFileSync(dummyPath, createSolidJpeg(50, 50, 100, 100, 100));
 
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -72,7 +73,7 @@ describe("PageDownloader applyCoverSelection", () => {
 
   it("moves specified page ID to index 0 when --cover <pid> is passed", async () => {
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -90,7 +91,7 @@ describe("PageDownloader applyCoverSelection", () => {
     fs.writeFileSync(page0Path, createSolidJpeg(100, 100, 0, 0, 0)); // Black
 
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: testDir,
       pace: 0,
@@ -114,7 +115,7 @@ describe("PageDownloader applyCoverSelection", () => {
     fs.writeFileSync(page0Path, createSolidJpeg(200, 200, 120, 120, 120)); // 200x200
 
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: testDir,
       pace: 0,
@@ -138,7 +139,7 @@ describe("PageDownloader applyCoverSelection", () => {
     fs.writeFileSync(page0Path, await sharp(createSolidJpeg(300, 450, 90, 140, 200)).png().toBuffer());
 
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: testDir,
       pace: 0,
@@ -156,7 +157,7 @@ describe("PageDownloader applyCoverSelection", () => {
     fs.writeFileSync(page0Path, await sharp(createSolidJpeg(300, 450, 90, 140, 200)).png().toBuffer());
 
     const downloader = new TestPageDownloader("test_book", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: testDir,
       pace: 0,

@@ -87,8 +87,9 @@ The result goes to `<epub folder>/hires/<title>.epub` (or `--out`); the source E
 ## Development
 
 ```bash
-bun run test           # unit tests
-bunx tsc --noEmit -p . # type check
+bun run test                # unit tests (offline; uses tests/fixtures/test-cookies.txt)
+NETWORK_TESTS=1 bun test    # also run the tests that call Google
+bun run typecheck           # type check
 ```
 
 ### Project structure

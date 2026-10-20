@@ -1,4 +1,5 @@
 import { describe, it, expect } from "bun:test";
+import { TEST_COOKIES, RUN_NETWORK_TESTS } from "./fixtures";
 import { EpubDownloader } from "../src/downloader/epub";
 import { GoogleBookManifest } from "../types";
 import fs from "fs";
@@ -7,7 +8,7 @@ import path from "path";
 describe("EpubDownloader cover handling", () => {
   it("skips cover generation when --cover none is specified", async () => {
     const downloader = new EpubDownloader("Hk3cEAAAQBAJ", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -25,7 +26,7 @@ describe("EpubDownloader cover handling", () => {
     fs.writeFileSync(dummyCoverPath, Buffer.from([0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x10]));
 
     const downloader = new EpubDownloader("Hk3cEAAAQBAJ", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -42,9 +43,9 @@ describe("EpubDownloader cover handling", () => {
     }
   });
 
-  it("forces frontcover endpoint when --cover frontcover is specified", async () => {
+  it.skipIf(!RUN_NETWORK_TESTS)("forces frontcover endpoint when --cover frontcover is specified", async () => {
     const downloader = new EpubDownloader("Hk3cEAAAQBAJ", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -57,9 +58,9 @@ describe("EpubDownloader cover handling", () => {
     expect(cover?.data.byteLength).toBeGreaterThan(1000);
   });
 
-  it("falls back to frontcover endpoint when no pages are available in auto mode", async () => {
+  it.skipIf(!RUN_NETWORK_TESTS)("falls back to frontcover endpoint when no pages are available in auto mode", async () => {
     const downloader = new EpubDownloader("Hk3cEAAAQBAJ", {
-      cookiesPath: "cookies.txt",
+      cookiesPath: TEST_COOKIES,
       outputDir: "tmp",
       tempDir: "tmp",
       pace: 0,
@@ -79,7 +80,7 @@ describe("EpubDownloader cover handling", () => {
 
 describe("EpubDownloader CSS and illustration formatting", () => {
   const downloader = new EpubDownloader("Hk3cEAAAQBAJ", {
-    cookiesPath: "cookies.txt",
+    cookiesPath: TEST_COOKIES,
     outputDir: "tmp",
     tempDir: "tmp",
     pace: 0,

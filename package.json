@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "bun run src/cli.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "typecheck": "tsc --noEmit -p ."
   },
   "engines": {
     "bun": ">=1.0.0"
